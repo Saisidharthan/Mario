@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import img from '../assets/image.jpg';
 import Header from '../components/Home/Header';
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -33,10 +34,16 @@ const Register = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async(e) => {
     e.preventDefault();
     if (validate()) {
-      console.log(formData);
+      try {
+        console.log(formData);
+        const response = await axios.post('http://localhost:8080/addUser', formData);
+        console.log(response);
+      } catch (error) {
+        console.log('Registration failed. Please try again.');
+      }
     }
   };
 
@@ -115,4 +122,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register;

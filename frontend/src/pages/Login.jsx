@@ -2,12 +2,15 @@ import { useState } from 'react';
 import img from '../assets/image.jpg';
 import { FcGoogle } from "react-icons/fc";
 import Header from '../components/Home/Header';
+import axios from 'axios';
 
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+
+    const [loginerror, setLoginError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,12 +34,23 @@ const Login = () => {
         return Object.keys(errors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
-            console.log(formData);
+            try {
+                const response = await axios.post('http://localhost:8080/login', formData);
+                if(response.data === formData){
+                    console.log(response.data);
+                    window.location.href = '/dashboard';
+                }else{
+                    setLoginError('Invalid email or password. Please try again.');
+                }
+
+            } catch (error) {
+                alert('Login failed. Please try again.', error);
+            }
         }
-    }
+    };
 
     return (
         <div>
@@ -86,8 +100,11 @@ const Login = () => {
                         <FcGoogle  className='w-[25px] h-[25px] ml-16 mr-8'/>Sign In with Google
                         </button>
                         <div className='text-center text-gray-400'>
-                              Dont Have an Account
+                              Dont Have an Account?
                               <a href="/register" className='font-bold text-black'> Sign up for Free</a>
+                        </div>
+                        <div className='text-center mt-3 text-lg'>
+                            {loginerror && <p className="text-red-500">{loginerror}</p>}
                         </div>
                     </div>
                     <div className='relative'>
