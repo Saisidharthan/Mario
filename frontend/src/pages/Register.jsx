@@ -2,8 +2,10 @@ import { useState } from 'react';
 import img from '../assets/image.jpg';
 import Header from '../components/Home/Header';
 import axios from 'axios';
+import { useUser } from '../context/UserContext';
 
 const Register = () => {
+  const { user, setUser } = useUser();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -38,9 +40,11 @@ const Register = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        console.log(formData);
         const response = await axios.post('http://localhost:8080/addUser', formData);
-        console.log(response);
+        if(response.data === true){
+          setUser("hi");
+          window.location.href = '/dashboard';
+        }
       } catch (error) {
         console.log('Registration failed. Please try again.');
       }
@@ -48,8 +52,7 @@ const Register = () => {
   };
 
   return (
-    <div className='sticky top-0 z-20 shadow-md'>
-      <Header />
+    <div>
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-black via-gray-950 to-gray-900">
         <div className='relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0'>
           <div className='flex flex-col justify-center p-8 md:p-14'>

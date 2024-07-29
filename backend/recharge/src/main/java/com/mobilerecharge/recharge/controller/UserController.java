@@ -21,16 +21,20 @@ public class UserController {
     UserService service;
 
     @PostMapping("/addUser")
-    public UserModel addUser(@RequestBody UserModel user) {
-        return service.addUser(user);
+    public boolean addUser(@RequestBody UserModel user) {
+        UserModel user1 = service.addUser(user);
+        if(user1 != null) {
+            return true;
+        }
+        return false;
     }
 
     @PostMapping("/login")
-    public UserModel login(@RequestBody UserModel user) {
+    public boolean login(@RequestBody UserModel user) {
         boolean authenticated = service.login(user);
         if (authenticated) {
-            return user;
+            return true;
         }
-        return null;
+        return false;
     }
 }

@@ -1,9 +1,15 @@
-import Header from "../components/Home/Header"
+import {useEffect} from "react";
+import { useUser } from "../context/UserContext";
 
 const Dashboard = () => {
+  const {user} = useUser();
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
+
   return (
     <div>
-        <Header />
         <div className="flex flex-row w-full h-full ">
             <div className="w-[35%] h-screen bg-neutral-600">
                 <h2 className="font-semibold text-5xl text-white mt-14 ml-20">Recharge Online</h2>
