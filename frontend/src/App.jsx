@@ -8,6 +8,7 @@ import Payment from "./pages/Payment";
 import Thankyou from "./pages/Thankyou";
 import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const {user} = useContext(UserContext);
@@ -22,6 +23,7 @@ function App() {
             <Route path='/payment' element={<Payment />} />
             <Route path='/thankyou' element={<Thankyou />} />
             <Route path='*' element={<Navigate to="/"/>} />
+            <Route path="/checkout" element={<Checkout />} />
         </Routes>
     </div>
   )

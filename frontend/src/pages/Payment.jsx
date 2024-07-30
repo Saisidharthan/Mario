@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Header from "../components/Home/Header";
 
 const Payment = () => {
     const [cardNumber, setCardNumber] = useState('');
@@ -16,7 +15,6 @@ const Payment = () => {
 
         navigate('/thankyou', {
             state: {
-                cardholderName,
                 planName: plan?.name,
                 planAmount: plan?.amount
             }

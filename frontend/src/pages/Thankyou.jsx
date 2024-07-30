@@ -1,8 +1,11 @@
 
+import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 const Thankyou = () => {
     const location = useLocation();
-    const { cardholderName, planName, planAmount } = location.state || {};
+    const { planName, planAmount } = location.state || {};
+    const { user } = useContext(UserContext);
   return (
     <div>
             <div className="bg-gradient-to-b from-black via-gray-950 to-gray-900 flex items-center justify-center p-6 h-screen">
@@ -17,8 +20,8 @@ const Thankyou = () => {
                     <div className="mb-6">
                         <h2 className="text-lg font-semibold text-gray-800 mb-2">Order Summary</h2>
                         <div className="flex justify-between mb-2">
-                            <span className="text-gray-600">Cardholder Name</span>
-                            <span className="font-semibold text-gray-800">{cardholderName || 'N/A'}</span>
+                            <span className="text-gray-600">User Details</span>
+                            <span className="font-semibold text-gray-800">{user || 'N/A'}</span>
                         </div>
                         <div className="flex justify-between mb-2">
                             <span className="text-gray-600">Plan Name</span>

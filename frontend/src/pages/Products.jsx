@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import img from '../assets/img-1.jpg';
-import Header from "../components/Home/Header";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Products = () => {
+    const location = useLocation();
     const [Plans, setPlans] = useState([]);
+    const { phoneNumber } = location.state || {}
 
     useEffect(() => {
         const fetchPlans = async () => {
@@ -23,8 +24,9 @@ const Products = () => {
     const navigate = useNavigate();
 
     const handleRowClick = (plan) => {
-        navigate('/payment', { state: { plan } });
+        navigate('/checkout', { state: { plan, phoneNumber} });
     };
+
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-black via-gray-950 to-gray-900">
