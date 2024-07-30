@@ -1,5 +1,6 @@
 package com.mobilerecharge.recharge.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +13,7 @@ public class UserModel {
     private int id;
     private String firstName;
     private String lastName;
+    @Column(unique=true)
     private String email;
     private String password;
     public String getFirstname() {
