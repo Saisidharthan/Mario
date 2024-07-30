@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import img from '../assets/image.jpg';
 import { FcGoogle } from "react-icons/fc";
-import Header from '../components/Home/Header';
 import axios from 'axios';
 import { useUser } from '../context/UserContext';
 
@@ -43,7 +42,6 @@ const Login = () => {
                 const response = await axios.post('http://localhost:8080/login', formData);
                 if(response.data === true){
                     setUser(formData.email);
-                    // window.location.href = '/dashboard';
                 }else{
                     setLoginError('Invalid email or password. Please try again.');
                 }
@@ -56,7 +54,7 @@ const Login = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-black via-gray-950 to-gray-900">
+            <div className="flex items-center justify-center min-h-screen">
                 <div className='relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0'>
                     <div className='flex flex-col justify-center p-8 md:p-14'>
                         <span className='mb-3 text-4xl font-bold'>Welcome Back</span>
