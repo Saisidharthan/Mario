@@ -25,11 +25,11 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestBody UserModel user) {
-        boolean authenticated = service.login(user);
-        if (authenticated) {
-            return true;
+    public UserModel login(@RequestBody UserModel user) {
+        UserModel authenticated = service.login(user);
+        if (authenticated!=null) {
+            return authenticated;
         }
-        return false;
+        return null;
     }
 }

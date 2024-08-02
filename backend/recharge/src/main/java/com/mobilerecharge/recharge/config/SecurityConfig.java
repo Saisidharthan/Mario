@@ -21,11 +21,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/addUser","/login").permitAll() // Allow access to the root URL
-                .anyRequest().authenticated() // All other requests require authentication
+                .requestMatchers("/**").permitAll()
             )
             .csrf((csrf) -> csrf
-                .disable() // Disable CSRF protection
+                .disable()
             );
 
         return http.build();

@@ -40,9 +40,15 @@ const Login = () => {
         if (validate()) {
             try {
                 const response = await axios.post('http://localhost:8080/login', formData, { withCredentials: true });
-                if(response.data === true){
-                    setUser(formData.email);
-                    localStorage.setItem("user-email", JSON.stringify(formData.email))
+                if(response.status === 200){
+                    console.log(response.data);
+                    const user_data = {
+                        firstName: response.data.firstname,
+                        lastName: response.data.lastName,
+                        email: response.data.email
+                    }
+                    setUser(user_data);
+                    localStorage.setItem("user-data", JSON.stringify(user_data))
                 }else{
                     setLoginError('Invalid email or password. Please try again.');
                 }

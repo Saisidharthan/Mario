@@ -8,12 +8,12 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(()=>{
-    const userdata = localStorage.getItem("user-email");
+    const userdata = localStorage.getItem("user-data");
     setUser(JSON.parse(userdata));
   },[]);
 
   const logoutUser = () => {
-    localStorage.removeItem("user-email");
+    localStorage.removeItem("user-data");
     setUser(null);
   };
 

@@ -21,7 +21,7 @@ const Thankyou = () => {
                         <h2 className="text-lg font-semibold text-gray-800 mb-2">Order Summary</h2>
                         <div className="flex justify-between mb-2">
                             <span className="text-gray-600">User Details</span>
-                            <span className="font-semibold text-gray-800">{user || 'N/A'}</span>
+                            <span className="font-semibold text-gray-800">{user.firstName || 'N/A'}</span>
                         </div>
                         <div className="flex justify-between mb-2">
                             <span className="text-gray-600">Plan Name</span>
@@ -36,6 +36,11 @@ const Thankyou = () => {
                     {/* Message */}
                     <div className="text-center">
                         <p className="text-gray-600">Your package will be delivered soon. If you have any questions, please contact our support team.</p>
+                    </div>
+
+                    {/* Return to Home Page */}
+                    <div className="text-center mt-6">
+                        <a href="/" className="text-purple-950 hover:underline">Return to Home Page</a>
                     </div>
                 </div>
             </div>

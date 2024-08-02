@@ -41,8 +41,13 @@ const Register = () => {
       try {
         const response = await axios.post('http://localhost:8080/addUser', formData,{ withCredentials: true });
         if(response.data === true){
-          setUser(formData.email);
-          localStorage.setItem("user-email", JSON.stringify(formData.email))
+          const user_data = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email
+          };
+          setUser(user_data);
+          localStorage.setItem("user-data", JSON.stringify(user_data))
         }else{
           alert('Registration failed. Please try again.');
         }
