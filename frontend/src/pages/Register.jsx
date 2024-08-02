@@ -39,7 +39,7 @@ const Register = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        const response = await axios.post('http://localhost:8080/addUser', formData);
+        const response = await axios.post('http://localhost:8080/addUser', formData,{ withCredentials: true });
         if(response.data === true){
           setUser(formData.email);
           localStorage.setItem("user-email", JSON.stringify(formData.email))

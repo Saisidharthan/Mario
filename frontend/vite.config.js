@@ -7,7 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/plans': "http://localhost:8080",
-      '/contactus': "http://localhost:8080"
+      '/contactus': "http://localhost:8080",
+      '/login': "http://localhost:8080",
+      '/addUser': "http://localhost:8080",
     }
   }
 })
