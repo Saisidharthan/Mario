@@ -6,13 +6,11 @@ import com.mobilerecharge.recharge.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import com.mobilerecharge.recharge.model.UserModel;
 
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
     @Autowired
     UserService service;
