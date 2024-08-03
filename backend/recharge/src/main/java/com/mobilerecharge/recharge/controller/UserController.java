@@ -9,11 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.mobilerecharge.recharge.model.UserModel;
 
 
-
 @RestController
 public class UserController {
     @Autowired
     UserService service;
+
+
+
+    @PostMapping("/addAdminUser")
+    public boolean addAdminUser(@RequestBody UserModel user) {
+        UserModel user1 = service.addAdminUser(user);
+        if(user1 != null) {
+            return true;
+        }
+        return false;
+    }
 
     @PostMapping("/addUser")
     public boolean addUser(@RequestBody UserModel user) {

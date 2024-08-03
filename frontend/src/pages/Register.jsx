@@ -44,7 +44,8 @@ const Register = () => {
           const user_data = {
             firstName: formData.firstName,
             lastName: formData.lastName,
-            email: formData.email
+            email: formData.email,
+            role: 'USER'
           };
           setUser(user_data);
           localStorage.setItem("user-data", JSON.stringify(user_data))

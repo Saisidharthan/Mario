@@ -26,7 +26,7 @@ const Checkout = () => {
                             </div>
                             <div className="p-6  w-[50%]">
                                 <h2 className="text-2xl font-semibold mb-2 text-gray-800">{plan.name}</h2>
-                                <p className="text-gray-700 text-lg mb-1">Price: <span className="font-bold">${plan.amount}</span></p>
+                                <p className="text-gray-700 text-lg mb-1">Price: <span className="font-bold">&#8377;{plan.amount}</span></p>
                                 <p className="text-gray-700 text-lg mb-1">Validity: <span className="font-bold">{plan.validity}</span></p>
                                 <p className="text-gray-700 text-lg mb-4">Data: <span className="font-bold">{plan.data} GB</span></p>
                             </div>

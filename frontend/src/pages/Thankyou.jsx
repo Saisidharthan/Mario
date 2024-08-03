@@ -29,7 +29,7 @@ const Thankyou = () => {
                         </div>
                         <div className="flex justify-between">
                             <span className="text-gray-600">Plan Amount</span>
-                            <span className="font-semibold text-gray-800">${planAmount || '0.00'}</span>
+                            <span className="font-semibold text-gray-800">&#8377;{planAmount || '0.00'}</span>
                         </div>
                     </div>
 

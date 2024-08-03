@@ -1,5 +1,7 @@
 package com.mobilerecharge.recharge.model;
 
+import com.mobilerecharge.recharge.enums.RoleEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +18,8 @@ public class UserModel {
     @Column(unique=true)
     private String email;
     private String password;
+    private RoleEnum role;
+    
     public String getFirstname() {
         return firstName;
     }
@@ -37,14 +41,21 @@ public class UserModel {
     public String getPassword() {
         return password;
     }
+    public RoleEnum getRole() {
+        return role;
+    }
+    public void setRole(RoleEnum role) {
+        this.role = role;
+    }
     public void setPassword(String password) {
         this.password = password;
     }
-    public UserModel(String firstName, String lastName, String email, String password) {
+    public UserModel(String firstName, String lastName, String email, String password, RoleEnum role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
     public UserModel() {
     }

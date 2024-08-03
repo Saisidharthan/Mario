@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.mobilerecharge.recharge.enums.RoleEnum;
 import com.mobilerecharge.recharge.model.UserModel;
 import com.mobilerecharge.recharge.repository.UserRepository;
 
@@ -14,9 +15,17 @@ public class UserService {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    public UserModel addAdminUser(UserModel user) {
+        String hashedPassword = encoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
+        user.setRole(RoleEnum.ADMIN);
+        return userRepo.save(user);
+    }
+
     public UserModel addUser(UserModel user) {
         String hashedPassword = encoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
+        user.setRole(RoleEnum.USER);
         return userRepo.save(user);
     }
 

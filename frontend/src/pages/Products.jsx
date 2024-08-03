@@ -61,18 +61,14 @@ const Products = () => {
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
                                     {Plans.map(plan => (
-                                        <tr 
-                                            key={plan.id} 
-                                            className="bg-gray-100 even:bg-gray-200 text-xl cursor-pointer"
-                                            onClick={() => handleRowClick(plan)}
-                                        >
+                                        <tr className="bg-gray-100 even:bg-gray-200 text-xl">
                                             <td className="py-2 px-4">{plan.name}</td>
-                                            <td className="py-2 px-4">${plan.amount}</td>
+                                            <td className="py-2 px-4"><span>&#x20B9;</span>{plan.amount}</td>
                                             <td className="py-2 px-4">{plan.validity}</td>
                                             <td className="py-2 px-4">{plan.data} GB</td>
                                             <td className="py-2 px-4 items-center">
-                                                <div className="bg-black text-white font-semibold text-xl w-20 text-center border rounded-lg mt-5">
-                                                    ${plan.amount}
+                                                <div className="bg-black text-white font-semibold text-xl w-20 text-center border rounded-lg mt-5 cursor-pointer" key={plan.id} onClick={() => handleRowClick(plan)}>
+                                                &#8377;{plan.amount}
                                                 </div>
                                                 <div className="mt-3">
                                                     <a href="#" className="text-sm text-purple-500 mt-9">

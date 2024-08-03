@@ -92,11 +92,11 @@ const Payment = () => {
                                 </div>
                                 <div className="flex justify-between mb-2">
                                     <span className="text-gray-600">Plan Amount</span>
-                                    <span className="font-semibold text-gray-800">${plan.amount}</span>
+                                    <span className="font-semibold text-gray-800">&#8377;{plan.amount}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span className="text-gray-600">Total</span>
-                                    <span className="font-semibold text-gray-800">${plan.amount}</span>
+                                    <span className="font-semibold text-gray-800">&#8377;{plan.amount}</span>
                                 </div>
                             </div>
                         )}
