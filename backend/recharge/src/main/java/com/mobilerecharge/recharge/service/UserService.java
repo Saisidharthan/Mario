@@ -1,5 +1,7 @@
 package com.mobilerecharge.recharge.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,12 @@ public class UserService {
             return user;
         }
         return null;
+    }
+
+    public List<UserModel> getAllUsers() {
+        return userRepo.findAll();
+    }
+    public long getUserCount() {
+        return userRepo.count();
     }
 }

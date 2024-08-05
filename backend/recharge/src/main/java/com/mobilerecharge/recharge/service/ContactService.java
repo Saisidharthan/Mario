@@ -1,5 +1,7 @@
 package com.mobilerecharge.recharge.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,13 @@ public class ContactService {
     public String contact(ContactModel con){
         repo.save(con);
         return "Request Received";
+    }
+
+    public long getContactCount(){
+        return repo.count();
+    }
+
+    public List<ContactModel> getAllContacts(){
+        return repo.findAll();
     }
 }

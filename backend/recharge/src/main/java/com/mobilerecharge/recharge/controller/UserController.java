@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.mobilerecharge.recharge.service.UserService;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mobilerecharge.recharge.model.UserModel;
@@ -41,5 +42,10 @@ public class UserController {
             return authenticated;
         }
         return null;
+    }
+
+    @GetMapping("/userCount")
+    public long getUserCount() {
+        return service.getUserCount();
     }
 }

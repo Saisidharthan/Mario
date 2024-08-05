@@ -35,5 +35,10 @@ public class PlanController {
         PlansModel newPlan = service.addPlan(plan);
         return ResponseEntity.ok(newPlan);
     }
+
+    @GetMapping("/planCount")
+    public long getPlanCount(){
+        return service.getPlanCount();
+    }
     
 }

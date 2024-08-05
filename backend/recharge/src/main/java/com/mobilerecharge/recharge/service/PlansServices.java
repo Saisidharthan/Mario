@@ -20,4 +20,8 @@ public class PlansServices
     {
         return repository.save(plan);
     }
+
+    public long getPlanCount(){
+        return repository.count();
+    }
 }
