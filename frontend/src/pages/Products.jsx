@@ -1,14 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import img from '../assets/img-1.jpg'; 
 import { useLocation, useNavigate } from "react-router-dom";
+import img from '../assets/img-1.jpg';
 
 const Products = () => {
     const location = useLocation();
-    const [Plans, setPlans] = useState([]);
+    const [plans, setPlans] = useState([]);
     const { phoneNumber } = location.state || {};
     const [selectedPlanType, setSelectedPlanType] = useState('');
     const [loading, setLoading] = useState(true);
+    const [selectedPlan, setSelectedPlan] = useState(null);
 
     useEffect(() => {
         const fetchPlans = async () => {
@@ -33,11 +34,9 @@ const Products = () => {
 
     const handlePlanTypeClick = (type) => {
         setSelectedPlanType(type);
-        console.log('Selected plan type:', type);
-        console.log('Filtered plans:', Plans.filter(plan => plan.type === type));
     };
 
-    const filteredPlans = selectedPlanType ? Plans.filter(plan => plan.type === selectedPlanType) : Plans;
+    const filteredPlans = selectedPlanType ? plans.filter(plan => plan.type === selectedPlanType) : plans;
 
     if (loading) {
         return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
@@ -46,7 +45,7 @@ const Products = () => {
     return (
         <>
             <div className="min-h-[60vh] bg-gradient-to-b from-black via-gray-950 to-gray-900">
-                <div className="h-[88.5vh] w-full flex">
+                <div className="h-[89vh] w-full flex">
                     <div className="w-1/3 bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white mt-12">
                         <h2 className="ml-9 mt-2 font-bold text-3xl">Browse mobile recharge plans</h2>
                         <img src={img} alt="mobile" className="w-[250px] mt-14 ml-32" />
@@ -56,37 +55,37 @@ const Products = () => {
                             <div className="flex overflow-x-auto whitespace-nowrap scrollbar-hidden text-2xl">
                                 <button
                                     onClick={() => handlePlanTypeClick('DATA')}
-                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'DATA' ? 'text-purple-500 underline underline-offset-4' : 'hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4'} transition duration-300`}
+                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'DATA' ? 'text-neutral-500' : 'hover:text-purple-500 focus:text-purple-300 focus:text-[25px] hover:text-[25px]'} transition duration-1000`}
                                 >
                                     Data
                                 </button>
                                 <button
                                     onClick={() => handlePlanTypeClick('UNLIMITED')}
-                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'UNLIMITED' ? 'text-purple-500 underline underline-offset-4' : 'hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4'} transition duration-300`}
+                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'UNLIMITED' ? 'text-neutral-500' : 'hover:text-purple-500 focus:text-purple-300 focus:text-[25px] hover:text-[25px]'} transition duration-1000`}
                                 >
                                     Truly Unlimited
                                 </button>
                                 <button
                                     onClick={() => handlePlanTypeClick('TALKTIME')}
-                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'TALKTIME' ? 'text-purple-500 underline underline-offset-4' : 'hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4'} transition duration-300`}
+                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'TALKTIME' ? 'text-neutral-500' : 'hover:text-purple-500 focus:text-purple-300 focus:text-[25px] hover:text-[25px]'} transition duration-1000`}
                                 >
                                     TalkTime
                                 </button>
                                 <button
                                     onClick={() => handlePlanTypeClick('ENTERTAINMENT')}
-                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'ENTERTAINMENT' ? 'text-purple-500 underline underline-offset-4' : 'hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4'} transition duration-300`}
+                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'ENTERTAINMENT' ? 'text-neutral-500' : 'hover:text-purple-500 focus:text-purple-300 focus:text-[25px] hover:text-[25px]'} transition duration-1000`}
                                 >
                                     Entertainment
                                 </button>
                                 <button
                                     onClick={() => handlePlanTypeClick('INTERNATIONALROAMING')}
-                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'INTERNATIONALROAMING' ? 'text-purple-500 underline underline-offset-4' : 'hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4'} transition duration-300`}
+                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'INTERNATIONALROAMING' ?'text-neutral-500' : 'hover:text-purple-500 focus:text-purple-300 focus:text-[25px] hover:text-[25px]'} transition duration-1000`}
                                 >
                                     International Roaming
                                 </button>
                                 <button
                                     onClick={() => handlePlanTypeClick('OTHERS')}
-                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'OTHERS' ? 'text-purple-500 underline underline-offset-4' : 'hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4'} transition duration-300`}
+                                    className={`inline-block px-4 py-2 mr-2 text-white no-underline rounded ${selectedPlanType === 'OTHERS' ?'text-neutral-500' : 'hover:text-purple-500 focus:text-purple-300 focus:text-[25px] hover:text-[25px]'} transition duration-1000`}
                                 >
                                     Others
                                 </button>
@@ -110,13 +109,13 @@ const Products = () => {
                                                 <td className="py-2 px-4">{plan.name}</td>
                                                 <td className="py-2 px-4"><span>&#x20B9;</span>{plan.amount}</td>
                                                 <td className="py-2 px-4">{plan.validity}</td>
-                                                <td className="py-2 px-4">{plan.data} GB</td>
+                                                <td className="py-2 px-4">{plan.data} GB{plan.type==='UNLIMITED'?" / Day":null}</td>
                                                 <td className="py-0 px-4 items-center">
                                                     <div className="bg-black text-white font-semibold text-xl w-20 text-center border rounded-lg mt-5 cursor-pointer" onClick={() => handleRowClick(plan)}>
                                                         &#8377;{plan.amount}
                                                     </div>
                                                     <div className="mt-3">
-                                                        <button className="text-sm text-purple-500 ">
+                                                        <button className="text-sm text-purple-500" onClick={() => setSelectedPlan(plan)}>
                                                             View Details
                                                         </button>
                                                     </div>
@@ -130,6 +129,26 @@ const Products = () => {
                     </div>
                 </div>
             </div>
+
+            {selectedPlan && (
+                <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center text-start items-center z-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full gap-2">
+                        <h2 className="text-2xl font-semibold mb-4 text-center">{selectedPlan.name}</h2>
+                        <div className="flex justify-between mr-6 ml-3">
+                            <p className="text-lg flex flex-col"><span className="font-bold text-xl">Price</span> &#x20B9;{selectedPlan.amount}</p>
+                            <p className="text-lg flex flex-col"><span className="font-bold text-xl">Validity</span> {selectedPlan.validity}</p>
+                        </div>
+                            
+                        <p className="text-lg flex flex-col ml-3 mt-3"><span className="font-bold text-xl">Data</span> {selectedPlan.data} GB{selectedPlan.type==='UNLIMITED'?" / Day":null}</p>
+                        <button 
+                            onClick={() => setSelectedPlan(null)} 
+                            className="mt-4 bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-700 transition duration-300 w-full"
+                        >
+                            Back
+                        </button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
