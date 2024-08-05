@@ -35,6 +35,12 @@ public class PlanController {
         PlansModel newPlan = service.addPlan(plan);
         return ResponseEntity.ok(newPlan);
     }
+    @PostMapping
+    public ResponseEntity<List<PlansModel>> addPostmanPlan(@RequestBody List<PlansModel> plan)
+    {
+        List<PlansModel> newPlan = service.addPostmanPlan(plan);
+        return ResponseEntity.ok(newPlan);
+    }
 
     @GetMapping("/planCount")
     public long getPlanCount(){

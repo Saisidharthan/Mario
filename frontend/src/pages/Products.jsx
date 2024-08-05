@@ -41,10 +41,9 @@ const Products = () => {
                             <a href="#data" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">Data</a>
                             <a href="#truly-unlimited" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">Truly Unlimited</a>
                             <a href="#talktime" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">TalkTime</a>
-                            <a href="#cricket-packs" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">Cricket Packs</a>
+                            <a href="#Entertainment" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">Entertainment</a>
                             <a href="#international-roaming" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">International Roaming</a>
-                            <a href="#inflight-roaming" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">Inflight Roaming pack</a>
-                            <a href="#plan-vouchers" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">Plan Vouchers</a>
+                            <a href="#others" className="inline-block px-4 py-2 mr-2 text-white no-underline rounded hover:text-purple-500 hover:underline hover:underline-offset-4 focus:text-purple-300 focus:underline focus:underline-offset-4 transition duration-300">Others</a>
                         </div>
                     </div>
                     <div className="mt-9 w-[85%] mx-auto">
@@ -59,9 +58,9 @@ const Products = () => {
                                         <th className="text-left py-3 px-4 uppercase font-semibold text-xl">Details</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200">
+                                <tbody className="divide-y divide-gray-200 overflow-hidden scrollbar-hidden">
                                     {Plans.map(plan => (
-                                        <tr className="bg-gray-100 even:bg-gray-200 text-xl">
+                                        <tr className="bg-gray-100 even:bg-gray-200 text-xl overflow-hidden scrollbar-hidden">
                                             <td className="py-2 px-4">{plan.name}</td>
                                             <td className="py-2 px-4"><span>&#x20B9;</span>{plan.amount}</td>
                                             <td className="py-2 px-4">{plan.validity}</td>

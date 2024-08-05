@@ -24,4 +24,10 @@ public class PlansServices
     public long getPlanCount(){
         return repository.count();
     }
+
+    public List<PlansModel> addPostmanPlan(List<PlansModel> plan)
+    {
+        repository.saveAll(plan);
+        return repository.findAll();
+    }
 }

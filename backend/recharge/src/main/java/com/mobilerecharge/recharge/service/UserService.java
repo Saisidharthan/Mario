@@ -43,6 +43,6 @@ public class UserService {
         return userRepo.findAll();
     }
     public long getUserCount() {
-        return userRepo.count();
+        return userRepo.countByRole(RoleEnum.USER);
     }
 }

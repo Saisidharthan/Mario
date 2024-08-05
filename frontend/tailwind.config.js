@@ -22,6 +22,6 @@ export default {
         },
         ['responsive', 'hover', 'focus']
       );
-    },
-  ],
+    },
+  ],
 }
