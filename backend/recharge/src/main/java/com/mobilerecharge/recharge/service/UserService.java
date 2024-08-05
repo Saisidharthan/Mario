@@ -45,4 +45,8 @@ public class UserService {
     public long getUserCount() {
         return userRepo.countByRole(RoleEnum.USER);
     }
+    public List<UserModel> getUsers(){
+        return userRepo.findAll();
+    }
+
 }

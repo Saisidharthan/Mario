@@ -1,5 +1,7 @@
 package com.mobilerecharge.recharge.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.mobilerecharge.recharge.service.UserService;
@@ -15,7 +17,10 @@ public class UserController {
     @Autowired
     UserService service;
 
-
+    @GetMapping("/users")
+    public List<UserModel> getUsers() {
+        return service.getUsers();
+    }
 
     @PostMapping("/addAdminUser")
     public boolean addAdminUser(@RequestBody UserModel user) {

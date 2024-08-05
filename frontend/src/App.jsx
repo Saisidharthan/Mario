@@ -10,6 +10,8 @@ import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/AdminDashboard";
+import ManagePlans from "./pages/ManagePlans";
+import ManageUsers from "./pages/ManageUsers";
 
 function App() {
   const {user} = useContext(UserContext);
@@ -36,6 +38,8 @@ function App() {
             <Route path='/thankyou' element={<Thankyou />} />
             <Route path='*' element={<Navigate to="/"/>} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/manageplans" element={<ManagePlans />} />
+            <Route path="/manageusers" element={<ManageUsers />} />
         </Routes>
     </div>
   )
