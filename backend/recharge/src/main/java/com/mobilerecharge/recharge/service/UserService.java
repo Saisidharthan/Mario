@@ -1,6 +1,7 @@
 package com.mobilerecharge.recharge.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -48,5 +49,28 @@ public class UserService {
     public List<UserModel> getUsers(){
         return userRepo.findAll();
     }
+
+    public boolean deleteUserById(int id) {
+        Optional<UserModel> user = userRepo.findById(id);
+        if (user.isPresent()) {
+            userRepo.delete(user.get());
+            return true;
+        }
+        return false;
+    }
+    public boolean updateUser(int id, UserModel updatedUser) {
+        Optional<UserModel> existingUser = userRepo.findById(id);
+        if (existingUser.isPresent()) {
+            existingUser.get().setFirstName(updatedUser.getFirstName());
+            existingUser.get().setLastName(updatedUser.getLastName());
+            existingUser.get().setEmail(updatedUser.getEmail());
+            existingUser.get().setRole(updatedUser.getRole());
+            userRepo.save(existingUser.get());
+            return true;
+        }
+        return false;
+
+    }
+
 
 }

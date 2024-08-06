@@ -1,5 +1,7 @@
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Payment = () => {
     const [cardNumber, setCardNumber] = useState('');
@@ -7,18 +9,29 @@ const Payment = () => {
     const [cvv, setCvv] = useState('');
     const [cardholderName, setCardholderName] = useState('');
     const location = useLocation();
-    const { plan } = location.state || {};
+    const { plan,phoneNumber } = location.state || {};
     const navigate = useNavigate();
+    const {user} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        const data = {
+            "mobileNumber":phoneNumber,
+            "planName": plan.name,
+            "planAmount": plan.amount,
+            "planValidity": plan.validity,
+            "userId": user.id
+        }
+        
+        axios.post('http://localhost:8080/purchase',data);
+        
         navigate('/thankyou', {
             state: {
                 planName: plan?.name,
                 planAmount: plan?.amount
             }
         });
+        
     };
     const handleCancelPayment = () => {
         alert("Your transaction is cancelled");

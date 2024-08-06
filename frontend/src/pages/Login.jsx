@@ -43,7 +43,8 @@ const Login = () => {
                 if(response.status === 200){
                     console.log(response.data);
                     const user_data = {
-                        firstName: response.data.firstname,
+                        id: response.data.id,
+                        firstName: response.data.firstName,
                         lastName: response.data.lastName,
                         email: response.data.email,
                         role: response.data.role

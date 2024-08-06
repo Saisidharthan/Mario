@@ -12,6 +12,7 @@ import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/AdminDashboard";
 import ManagePlans from "./pages/ManagePlans";
 import ManageUsers from "./pages/ManageUsers";
+import ManagePurchase from "./pages/ManagePurchase";
 
 function App() {
   const {user} = useContext(UserContext);
@@ -40,6 +41,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/manageplans" element={<ManagePlans />} />
             <Route path="/manageusers" element={<ManageUsers />} />
+            <Route path="/managepurchase" element={<ManagePurchase />} />
         </Routes>
     </div>
   )

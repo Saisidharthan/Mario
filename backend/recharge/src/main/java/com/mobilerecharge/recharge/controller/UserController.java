@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.mobilerecharge.recharge.service.UserService;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mobilerecharge.recharge.model.UserModel;
 
@@ -32,12 +36,12 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public boolean addUser(@RequestBody UserModel user) {
+    public UserModel addUser(@RequestBody UserModel user) {
         UserModel user1 = service.addUser(user);
         if(user1 != null) {
-            return true;
+            return user1;
         }
-        return false;
+        return null;
     }
 
     @PostMapping("/login")
@@ -53,4 +57,14 @@ public class UserController {
     public long getUserCount() {
         return service.getUserCount();
     }
+
+    @DeleteMapping("/deleteUser/{id}")
+    public boolean deleteUserById(@PathVariable int id) {
+        return service.deleteUserById(id);
+    }
+    @PatchMapping("/updateUser/{id}")
+    public boolean updateUser(@PathVariable int id, @RequestBody UserModel user) {
+        return service.updateUser(id,user);
+    }
+
 }
