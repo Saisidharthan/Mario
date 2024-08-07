@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mobilerecharge.recharge.model.PlansModel;
 import com.mobilerecharge.recharge.service.PlansServices;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -42,6 +44,12 @@ public class PlanController {
     @GetMapping("/plans/planCount")
     public long getPlanCount(){
         return service.getPlanCount();
+    }
+
+    @DeleteMapping("/plandelete/{id}")
+    public boolean deletePlan(@PathVariable int id)
+    {
+        return service.deletePlan(id);
     }
     
 }

@@ -32,7 +32,6 @@ public class UserService {
     public UserModel addAdminUser(UserModel user) {
         String hashedPassword = encoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-        user.setRole(RoleEnum.ADMIN);
         return userRepo.save(user);
     }
 

@@ -16,7 +16,18 @@ const ManageQueries = () => {
         console.error('Error fetching queries:', error);
         setError('Error fetching queries. Please try again later.');
       });
-  }, [axiosInstance]);
+  }, [axiosInstance,queries]);
+
+  const onDelete = (id) => {
+    axiosInstance.delete(`http://localhost:8080/deleteContact/${id}`)
+      .then(() => {
+        setQueries(queries.filter(query => query.id !== id));
+      })
+      .catch(error => {
+        console.error('Error deleting query:', error);
+        setError('Error deleting query. Please try again later.');
+      });
+  }
 
   if (error) {
     return <div className="container mx-auto p-4 text-red-500">{error}</div>;
@@ -43,6 +54,14 @@ const ManageQueries = () => {
                     <td className="border px-4 py-2">{query.name}</td>
                     <td className="border px-4 py-2">{query.email}</td>
                     <td className="border px-4 py-2">{query.message}</td>
+                    <td className="border px-4 py-2">
+                      <button
+                        className="bg-red-500 text-white py-1 px-3 rounded"
+                        onClick={() => onDelete(query.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

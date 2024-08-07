@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext';
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [editFormData, setEditFormData] = useState({ firstName: '', lastName: '', email: '', role: '' });
-  const [addFormData, setAddFormData] = useState({ firstName: '', lastName: '', email: '', password: '', role: 'ADMIN' });
+  const [addFormData, setAddFormData] = useState({ firstName: '', lastName: '', email: '', password: '', role: '' });
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -243,8 +243,9 @@ const ManageUsers = () => {
                     onChange={handleEditFormChange}
                     className="w-full p-2 border border-gray-300 rounded"
                   >
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
+                    <option value="" disabled selected>Select User Role</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="USER">User</option>
                   </select>
                 </div>
                 <div className="flex justify-between">
@@ -328,7 +329,9 @@ const ManageUsers = () => {
                     onChange={handleAddFormChange}
                     className="w-full p-2 border border-gray-300 rounded"
                   >
-                    <option value="admin">Admin</option>
+                    <option value="" disabled selected>Select User Role</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="USER">User</option>
                   </select>
                 </div>
                 <div className="flex justify-between">

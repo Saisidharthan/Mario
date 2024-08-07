@@ -30,4 +30,9 @@ public class PlansServices
         repository.saveAll(plan);
         return repository.findAll();
     }
+
+    public boolean deletePlan(int id) {
+        repository.deleteById(id);
+        return true;
+    }
 }

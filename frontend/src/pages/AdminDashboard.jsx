@@ -27,7 +27,7 @@ const AdminDashboard = () => {
         };
 
         fetchCounts();
-    }, []);
+    }, [axiosInstance]);
   return (
     <div className="min-h-[90.25vh] bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
             <div className="flex">

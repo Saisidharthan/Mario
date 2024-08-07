@@ -25,4 +25,9 @@ public class ContactService {
     public List<ContactModel> getAllContacts(){
         return repo.findAll();
     }
+
+    public boolean deleteContact(int id) {
+        repo.deleteById(id);
+        return true;
+    }
 }

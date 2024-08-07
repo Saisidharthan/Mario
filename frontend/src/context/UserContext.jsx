@@ -18,7 +18,8 @@ export const UserProvider = ({ children }) => {
       baseURL: 'http://localhost:8080',
       headers: {
           'Authorization': `Bearer ${user?.token}`
-      }
+      },
+      withCredentials: true
   });
 
   const logoutUser = () => {
