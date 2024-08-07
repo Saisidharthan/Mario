@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import Sidebar from '../components/Admin/Sidebar';
 import { UserContext } from '../context/UserContext';
 
@@ -18,7 +17,7 @@ const ManageUsers = () => {
     axiosInstance.get('http://localhost:8080/auth/users')
       .then(response => setUsers(response.data))
       .catch(error => console.error('Error fetching users:', error));
-  }, [axiosInstance]);
+  }, [axiosInstance,users]);
 
   const handleEditClick = (user) => {
     setEditFormData({
@@ -404,4 +403,4 @@ const ManageUsers = () => {
   );
 };
 
-export default ManageUsers;
+export default ManageUsers;

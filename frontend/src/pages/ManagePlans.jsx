@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { useState, useEffect, useContext } from 'react';
 import Sidebar from '../components/Admin/Sidebar';
 import { UserContext } from '../context/UserContext';
 
@@ -17,7 +16,7 @@ const ManagePlans = () => {
         console.error('Error fetching plans:', error);
         setError('Error fetching plans. Please try again later.');
       });
-  }, [axiosInstance]);
+  }, [axiosInstance,plans]);
 
   if (error) {
     return <div className="container mx-auto p-4 text-red-500">{error}</div>;

@@ -42,7 +42,7 @@ function App() {
             <Route path="/checkout" element={user?<Checkout />:<Login/>} />
             <Route path="/manageplans" element={user?.role==='ADMIN'?<ManagePlans />:<Login/>} />
             <Route path="/manageusers" element={user?.role==='ADMIN'?<ManageUsers />:<Login/>} />
-            <Route path="/managepurchase" element={user?.role==='ADMIN'?<ManagePurchase />:<Login/>} />
+            <Route path="/managepurchase" element={user?<ManagePurchase />:<Login/>} />
             <Route path="/managequeries" element={user?.role==='ADMIN'?<ManageQueries />:<Login/>} />
         </Routes>
     </div>

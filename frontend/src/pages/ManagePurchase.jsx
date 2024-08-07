@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 
 const ManagePurchase = () => {
@@ -21,7 +21,7 @@ const ManagePurchase = () => {
         };
 
         fetchPurchaseHistory();
-    }, [user]);
+    }, [axiosInstance,user]);
 
     if (loading) {
         return <div className="text-center py-4">Loading...</div>;
@@ -38,7 +38,6 @@ const ManagePurchase = () => {
                 <table className="min-w-full bg-white border border-gray-200 rounded-lg">
                     <thead>
                         <tr>
-                            <th className="py-2 px-4 border-b">ID</th>
                             <th className="py-2 px-4 border-b">Mobile Number</th>
                             <th className="py-2 px-4 border-b">Plan Name</th>
                             <th className="py-2 px-4 border-b">Amount</th>
@@ -49,7 +48,6 @@ const ManagePurchase = () => {
                     <tbody>
                         {purchases.map((purchase) => (
                             <tr key={purchase.id} className="text-center">
-                                <td className="py-2 px-4 border-b">{purchase.id}</td>
                                 <td className="py-2 px-4 border-b">{purchase.mobileNumber}</td>
                                 <td className="py-2 px-4 border-b">{purchase.planName}</td>
                                 <td className="py-2 px-4 border-b">{purchase.planAmount}</td>
