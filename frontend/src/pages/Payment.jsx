@@ -11,7 +11,7 @@ const Payment = () => {
     const location = useLocation();
     const { plan,phoneNumber } = location.state || {};
     const navigate = useNavigate();
-    const {user} = useContext(UserContext);
+    const {user,axiosInstance} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ const Payment = () => {
             "userId": user.id
         }
         
-        axios.post('http://localhost:8080/purchase',data);
+        axiosInstance.post('http://localhost:8080/purchase',data);
         
         navigate('/thankyou', {
             state: {

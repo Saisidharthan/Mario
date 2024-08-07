@@ -39,9 +39,10 @@ const Register = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        const response = await axios.post('http://localhost:8080/addUser', formData,{ withCredentials: true });
+        const response = await axios.post('http://localhost:8080/auth/addUser', formData,{ withCredentials: true });
         if(response.data){
           const user_data = {
+            token: response.data.token,
             id: response.data.id,
             firstName: formData.firstName,
             lastName: formData.lastName,

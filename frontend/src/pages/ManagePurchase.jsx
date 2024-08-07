@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 
 const ManagePurchase = () => {
-    const {user} = useContext(UserContext);
+    const {user,axiosInstance} = useContext(UserContext);
     const [purchases, setPurchases] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -10,8 +10,8 @@ const ManagePurchase = () => {
         console.log(user);
         const fetchPurchaseHistory = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/purchase/${user.id}`);
-                const data = await response.json();
+                const response = await axiosInstance.get(`http://localhost:8080/purchase/${user.id}`);
+                const data = response.data;
                 setPurchases(data);
             } catch (error) {
                 console.error("Error fetching purchase history:", error);

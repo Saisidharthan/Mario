@@ -1,21 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom"
-import axios from "axios";
+import { UserContext } from "../context/UserContext";
+import Sidebar from "../components/Admin/Sidebar";
+
+
 const AdminDashboard = () => {
     const [totalCustomers, setTotalCustomers] = useState(0);
     const [totalProducts, setTotalProducts] = useState(0);
     const [totalComments, setTotalComments] = useState(0);
+    const { axiosInstance } = useContext(UserContext);
 
     useEffect(() => {
         const fetchCounts = async () => {
             try {
-                const userResponse = await axios.get('http://localhost:8080/userCount');
+                const userResponse = await axiosInstance.get('http://localhost:8080/auth/userCount');
                 setTotalCustomers(userResponse.data);
 
-                const productResponse = await axios.get('http://localhost:8080/plans/planCount');
+                const productResponse = await axiosInstance.get('http://localhost:8080/plans/planCount');
                 setTotalProducts(productResponse.data);
 
-                const commentResponse = await axios.get('http://localhost:8080/contactCount');
+                const commentResponse = await axiosInstance.get('http://localhost:8080/contactCount');
                 setTotalComments(commentResponse.data);
             } catch (error) {
                 console.error('Error fetching counts:', error);
@@ -27,13 +31,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-[90.25vh] bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
             <div className="flex">
-                <aside className="w-1/4 bg-gray-800 p-6 h-[90.25vh]">
-                    <nav className="space-y-4">
-                        <Link to="/manageusers" className="block py-2 px-4 rounded hover:bg-gray-700">Manage User Details</Link>
-                        <Link to="/manageplans" className="block py-2 px-4 rounded hover:bg-gray-700">Manage Plan Details</Link>
-                        <Link to="/managequeries" className="block py-2 px-4 rounded hover:bg-gray-700">Manage Consumer Queries</Link>
-                    </nav>
-                </aside>
+                <Sidebar />
                 <main className="w-3/4 p-6">
                     <h1 className="text-3xl font-semibold mb-6 ">Admin Dashboard</h1>
                     <div className="grid grid-cols-3 gap-6 text-center">

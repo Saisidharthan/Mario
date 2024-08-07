@@ -4,19 +4,30 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.mobilerecharge.recharge.config.JwtService;
+import com.mobilerecharge.recharge.controller.AuthenticationResponse;
 import com.mobilerecharge.recharge.enums.RoleEnum;
 import com.mobilerecharge.recharge.model.UserModel;
 import com.mobilerecharge.recharge.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserService {
     @Autowired
     UserRepository userRepo;
 
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder encoder;
+
+    private final JwtService jwtService;
+
+    private final AuthenticationManager authenticationManager;
 
     public UserModel addAdminUser(UserModel user) {
         String hashedPassword = encoder.encode(user.getPassword());
@@ -25,19 +36,41 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    public UserModel addUser(UserModel user) {
-        String hashedPassword = encoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
-        user.setRole(RoleEnum.USER);
-        return userRepo.save(user);
+    public AuthenticationResponse addUser(UserModel user) {
+        var user1 = UserModel.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .password(encoder.encode(user.getPassword()))
+                .role(RoleEnum.USER)
+                .build();
+        userRepo.save(user1);
+        UserModel newUser = userRepo.findByEmail(user.getEmail()).get();
+        var jwtToken = jwtService.generateToken(user1);
+        return AuthenticationResponse.builder()
+            .token(jwtToken)
+            .id(newUser.getId())
+            .firstName(newUser.getFirstName())
+            .lastName(newUser.getLastName())
+            .email(newUser.getEmail())
+            .role(newUser.getRole())
+            .build();
     }
 
-    public UserModel login(UserModel user1) {
-        UserModel user = userRepo.findByEmail(user1.getEmail());
-        if (user != null && encoder.matches(user1.getPassword(), user.getPassword())) {
-            return user;
-        }
-        return null;
+    public AuthenticationResponse login(UserModel user1) {
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(user1.getEmail(), user1.getPassword())
+        );
+        var newUser = userRepo.findByEmail(user1.getEmail()).orElseThrow();
+        var jwtToken = jwtService.generateToken(user1);
+        return AuthenticationResponse.builder()
+            .token(jwtToken)
+            .id(newUser.getId())
+            .firstName(newUser.getFirstName())
+            .lastName(newUser.getLastName())
+            .email(newUser.getEmail())
+            .role(newUser.getRole())
+            .build();
     }
 
     public List<UserModel> getAllUsers() {
@@ -70,6 +103,17 @@ public class UserService {
         }
         return false;
 
+    }
+
+    public boolean updateUserPassword(int id, UserModel updatedUser) {
+        Optional<UserModel> existingUser = userRepo.findById(id);
+        if (existingUser.isPresent()) {
+            String hashedPassword = encoder.encode(updatedUser.getPassword());
+            existingUser.get().setPassword(hashedPassword);
+            userRepo.save(existingUser.get());
+            return true;
+        }
+        return false;
     }
 
 

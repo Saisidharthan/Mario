@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Sidebar from '../components/Admin/Sidebar';
+import { UserContext } from '../context/UserContext';
 
 const ManagePlans = () => {
   const [plans, setPlans] = useState([]);
   const [error, setError] = useState(null);
+  const {axiosInstance} = useContext(UserContext);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/plans')
+    axiosInstance.get('http://localhost:8080/plans')
       .then(response => {
         setPlans(response.data);
       })
@@ -15,7 +17,7 @@ const ManagePlans = () => {
         console.error('Error fetching plans:', error);
         setError('Error fetching plans. Please try again later.');
       });
-  }, []);
+  }, [axiosInstance]);
 
   if (error) {
     return <div className="container mx-auto p-4 text-red-500">{error}</div>;

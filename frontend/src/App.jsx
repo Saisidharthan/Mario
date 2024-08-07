@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ManagePlans from "./pages/ManagePlans";
 import ManageUsers from "./pages/ManageUsers";
 import ManagePurchase from "./pages/ManagePurchase";
+import ManageQueries from "./pages/ManageQueries";
 
 function App() {
   const {user} = useContext(UserContext);
@@ -34,14 +35,15 @@ function App() {
             <Route path='/' element={user?<Dashboard/>:<Login/>} />
             <Route path='/login' element={user?<Dashboard/>:<Login/>} />
             <Route path='/register' element={user?<Dashboard/>:<Register/>} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/payment' element={<Payment />} />
-            <Route path='/thankyou' element={<Thankyou />} />
+            <Route path='/products' element={user?<Products />:<Login/>} />
+            <Route path='/payment' element={user?<Payment />:<Login/>} />
+            <Route path='/thankyou' element={user?<Thankyou />:<Login/>} />
             <Route path='*' element={<Navigate to="/"/>} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/manageplans" element={<ManagePlans />} />
-            <Route path="/manageusers" element={<ManageUsers />} />
-            <Route path="/managepurchase" element={<ManagePurchase />} />
+            <Route path="/checkout" element={user?<Checkout />:<Login/>} />
+            <Route path="/manageplans" element={user?.role==='ADMIN'?<ManagePlans />:<Login/>} />
+            <Route path="/manageusers" element={user?.role==='ADMIN'?<ManageUsers />:<Login/>} />
+            <Route path="/managepurchase" element={user?.role==='ADMIN'?<ManagePurchase />:<Login/>} />
+            <Route path="/managequeries" element={user?.role==='ADMIN'?<ManageQueries />:<Login/>} />
         </Routes>
     </div>
   )

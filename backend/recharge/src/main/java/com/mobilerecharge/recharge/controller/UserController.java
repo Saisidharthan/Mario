@@ -6,17 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.mobilerecharge.recharge.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.mobilerecharge.recharge.model.UserModel;
 
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/auth")
 public class UserController {
     @Autowired
     UserService service;
@@ -36,8 +41,8 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public UserModel addUser(@RequestBody UserModel user) {
-        UserModel user1 = service.addUser(user);
+    public AuthenticationResponse addUser(@RequestBody UserModel user) {
+        AuthenticationResponse user1 = service.addUser(user);
         if(user1 != null) {
             return user1;
         }
@@ -45,8 +50,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public UserModel login(@RequestBody UserModel user) {
-        UserModel authenticated = service.login(user);
+    public AuthenticationResponse login(@RequestBody UserModel user) {
+        AuthenticationResponse authenticated = service.login(user);
         if (authenticated!=null) {
             return authenticated;
         }
@@ -65,6 +70,11 @@ public class UserController {
     @PatchMapping("/updateUser/{id}")
     public boolean updateUser(@PathVariable int id, @RequestBody UserModel user) {
         return service.updateUser(id,user);
+    }
+
+    @PatchMapping("/updateUserPassword/{id}")
+    public boolean updateUserPassword(@PathVariable int id, @RequestBody UserModel user) {
+        return service.updateUserPassword(id,user);
     }
 
 }

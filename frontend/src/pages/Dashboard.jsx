@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import heroImage from '../assets/image-2.jpg';
+import { UserContext } from '../context/UserContext';
 
 const Dashboard = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const {axiosInstance} = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -34,7 +36,7 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/contactus', formData);
+      const response = await axiosInstance.post('http://localhost:8080/contactus', formData);
       alert(response.data);
       setFormData({
         name: '',

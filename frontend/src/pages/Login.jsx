@@ -39,10 +39,11 @@ const Login = () => {
         e.preventDefault();
         if (validate()) {
             try {
-                const response = await axios.post('http://localhost:8080/login', formData, { withCredentials: true });
+                const response = await axios.post('http://localhost:8080/auth/login', formData, { withCredentials: true });
                 if(response.status === 200){
                     console.log(response.data);
                     const user_data = {
+                        token: response.data.token,
                         id: response.data.id,
                         firstName: response.data.firstName,
                         lastName: response.data.lastName,

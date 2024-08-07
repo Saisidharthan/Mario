@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import img from '../assets/img-1.jpg';
+import { UserContext } from "../context/UserContext";
 
 const Products = () => {
     const location = useLocation();
@@ -10,11 +11,12 @@ const Products = () => {
     const [selectedPlanType, setSelectedPlanType] = useState('');
     const [loading, setLoading] = useState(true);
     const [selectedPlan, setSelectedPlan] = useState(null);
+    const { axiosInstance } = useContext(UserContext);
 
     useEffect(() => {
         const fetchPlans = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/plans');
+                const response = await axiosInstance.get('http://localhost:8080/plans');
                 setPlans(response.data);
                 setLoading(false);
                 console.log('Fetched plans:', response.data);
@@ -24,7 +26,7 @@ const Products = () => {
             }
         };
         fetchPlans();
-    }, []);
+    }, [axiosInstance]);
 
     const navigate = useNavigate();
 
