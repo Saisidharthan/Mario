@@ -32,10 +32,10 @@ const ManagePurchase = () => {
     }
 
     return (
-        <div className="container mx-auto p-4 w-full h-[88vh]">
+        <div className="container mx-auto p-4 w-screen h-[89vh] bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
             <h1 className="text-2xl font-bold mb-4 text-center">Purchase History</h1>
             <div className="overflow-x-auto w-3/4 mx-auto">
-                <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+                <table className="w-full bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white rounded-lg">
                     <thead>
                         <tr>
                             <th className="py-2 px-4 border-b">Mobile Number</th>

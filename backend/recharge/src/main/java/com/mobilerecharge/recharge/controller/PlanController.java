@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -51,5 +52,10 @@ public class PlanController {
     {
         return service.deletePlan(id);
     }
-    
+    @PutMapping("/planupdate/{id}")
+    public ResponseEntity<PlansModel> updatePlan(@RequestBody PlansModel plan)
+    {
+        PlansModel updatedPlan = service.updatePlan(plan);
+        return ResponseEntity.ok(updatedPlan);
+    }
 }

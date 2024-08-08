@@ -35,4 +35,12 @@ public class PlansServices
         repository.deleteById(id);
         return true;
     }
+    public PlansModel updatePlan(PlansModel plan) {
+        PlansModel existingPlan = repository.findById(plan.getId()).orElse(null);
+        existingPlan.setName(plan.getName());
+        existingPlan.setAmount(plan.getAmount());
+        existingPlan.setValidity(plan.getValidity());
+        existingPlan.setType(plan.getType());
+        return repository.save(existingPlan);
+    }
 }

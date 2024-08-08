@@ -53,8 +53,7 @@ public class PlansModel {
     public void setData(int data) {
         this.data = data;
     }
-    public PlansModel(int id, String name, Double amount, String validity, int data, PlanEnum type) {
-        this.id = id;
+    public PlansModel(String name, Double amount, String validity, int data, PlanEnum type) {
         this.name = name;
         this.amount = amount;
         this.validity = validity;
