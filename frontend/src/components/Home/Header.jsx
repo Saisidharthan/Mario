@@ -33,21 +33,16 @@ const Header = () => {
               </button>
               {dropdownOpen && (
                 <div className='absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-[150px] flex flex-col justify-center items-center'>
-                  <button onClick={() => {
-                    toggleDropdown();
-                    logoutUser();
-                  }} className='px-4 py-2 text-left w-full hover:bg-gray-200 rounded'>
-                    Logout
-                  </button>
                   <button onClick={toggleDropdown} className='px-4 py-2 text-left w-full hover:bg-gray-200 rounded'>
                     <Link to='/profile'>
                       Profile
                     </Link>
                   </button>
-                  <button onClick={toggleDropdown} className='px-4 py-2 text-left w-full hover:bg-gray-200 rounded'>
-                    <Link to='/managepurchase'>
-                      Orders
-                    </Link>
+                  <button onClick={() => {
+                    toggleDropdown();
+                    logoutUser();
+                  }} className='px-4 py-2 text-left w-full hover:bg-gray-200 rounded'>
+                    Logout
                   </button>
                 </div>
               )}

@@ -14,6 +14,9 @@ import ManagePlans from "./pages/ManagePlans";
 import ManageUsers from "./pages/ManageUsers";
 import ManagePurchase from "./pages/ManagePurchase";
 import ManageQueries from "./pages/ManageQueries";
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
+import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   const {user} = useContext(UserContext);
@@ -43,6 +46,9 @@ function App() {
             <Route path="/manageplans" element={user?.role==='ADMIN'?<ManagePlans />:<Login/>} />
             <Route path="/manageusers" element={user?.role==='ADMIN'?<ManageUsers />:<Login/>} />
             <Route path="/managepurchase" element={user?<ManagePurchase />:<Login/>} />
+            <Route path="/profile" element={user?<Profile />:<Login/>} />
+            <Route path="/editprofile" element={user?<EditProfile />:<Login/>} />
+            <Route path="/changepassword" element={user?<ChangePassword />:<Login/>} />
             <Route path="/managequeries" element={user?.role==='ADMIN'?<ManageQueries />:<Login/>} />
         </Routes>
     </div>

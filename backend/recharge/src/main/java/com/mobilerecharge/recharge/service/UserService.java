@@ -115,5 +115,23 @@ public class UserService {
         return false;
     }
 
+    public UserModel getUserById(int id) {
+        Optional<UserModel> user = userRepo.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        return null;
+    }
+
+    public void changePassword(int userId, String currentPassword, String newPassword) throws Exception {
+        UserModel user = userRepo.findById(userId).orElseThrow(() -> new Exception("User not found"));
+    
+        if (!encoder.matches(currentPassword, user.getPassword())) {
+            throw new Exception("Current password is incorrect");
+        }
+
+        user.setPassword(encoder.encode(newPassword));
+        userRepo.save(user);
+    }
 
 }

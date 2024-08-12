@@ -99,7 +99,11 @@ const ManageUsers = () => {
       alert("New password and confirmation do not match");
       return;
     }
-    axiosInstance.patch(`http://localhost:8080/auth/updateUserPassword/${currentUser.id}`, { password: passwordFormData.newPassword })
+    axiosInstance.patch(`http://localhost:8080/auth/change-password`, {
+      userId: currentUser.id,
+      currentPassword: passwordFormData.oldPassword,
+      newPassword: passwordFormData.newPassword,
+    })
       .then(() => {
         setIsPasswordModalOpen(false);
       })

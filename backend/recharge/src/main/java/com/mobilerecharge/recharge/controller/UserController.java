@@ -3,6 +3,8 @@ package com.mobilerecharge.recharge.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import com.mobilerecharge.recharge.service.UserService;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mobilerecharge.recharge.dto.ChangePasswordRequest;
 import com.mobilerecharge.recharge.model.UserModel;
 
 
@@ -25,6 +28,11 @@ import com.mobilerecharge.recharge.model.UserModel;
 public class UserController {
     @Autowired
     UserService service;
+
+    @GetMapping("/user/{id}")
+    public UserModel getUserById(@PathVariable int id) {
+        return service.getUserById(id);
+    }
 
     @GetMapping("/users")
     public List<UserModel> getUsers() {
@@ -75,6 +83,16 @@ public class UserController {
     @PatchMapping("/updateUserPassword/{id}")
     public boolean updateUserPassword(@PathVariable int id, @RequestBody UserModel user) {
         return service.updateUserPassword(id,user);
+    }
+
+    @PatchMapping("/change-password")
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request) {
+        try {
+            service.changePassword(request.getUserId(), request.getCurrentPassword(), request.getNewPassword());
+            return ResponseEntity.ok("Password changed successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to change password");
+        }
     }
 
 }
