@@ -96,10 +96,10 @@ const ManagePlans = () => {
   }
 
   return (
-    <div className="min-h-[89vh] bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
-      <div className="flex h-[89vh]">
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
+      <div className="flex md:flex-row flex-col">
         <Sidebar />
-        <main className="w-3/4 p-6 h-[80.5vh]">
+        <main className="md:w-3/4 p-6 h-full">
           <div className='flex justify-between items-center mb-4'>
             <h1 className="text-2xl font-bold text-center flex-1">Manage Plans</h1>
             <button
@@ -113,7 +113,7 @@ const ManagePlans = () => {
           {isAddModalOpen && (
             <>
               <div className="fixed inset-0 bg-black bg-opacity-75 z-40" />
-              <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div className="fixed inset-0 flex items-center justify-center z-50 p-10">
                 <div className="bg-white p-6 rounded-lg w-full max-w-md relative shadow-xl">
                   <button
                     className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-4xl mr-3"
@@ -198,7 +198,7 @@ const ManagePlans = () => {
           {isEditModalOpen && (
             <>
               <div className="fixed inset-0 bg-black bg-opacity-75 z-40" />
-              <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div className="fixed inset-0 flex items-center justify-center z-50 p-10">
                 <div className="bg-white p-6 rounded-lg w-full max-w-md relative shadow-xl">
                   <button
                     className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-4xl mr-3"
@@ -284,27 +284,27 @@ const ManagePlans = () => {
             <table className="min-w-full bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
               <thead>
                 <tr>
-                  <th className="py-2 px-4">ID</th>
+                  <th className="py-2 px-4 hidden md:table-cell">ID</th>
                   <th className="py-2 px-4">Name</th>
                   <th className="py-2 px-4">Amount</th>
-                  <th className="py-2 px-4">Validity</th>
-                  <th className="py-2 px-4">Data</th>
-                  <th className="py-2 px-4">Type</th>
+                  <th className="py-2 px-4 hidden md:table-cell">Validity</th>
+                  <th className="py-2 px-4 hidden md:table-cell">Data</th>
+                  <th className="py-2 px-4 hidden md:table-cell">Type</th>
                   <th className="py-2 px-4">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {plans.map(plan => (
                   <tr key={plan.id}>
-                    <td className="border px-4 py-2">{plan.id}</td>
+                    <td className="border px-4 py-2 hidden md:table-cell">{plan.id}</td>
                     <td className="border px-4 py-2">{plan.name}</td>
                     <td className="border px-4 py-2">Rs. {plan.amount}</td>
-                    <td className="border px-4 py-2">{plan.validity}</td>
-                    <td className="border px-4 py-2">{plan.data} MB</td>
-                    <td className="border px-4 py-2">{plan.type}</td>
+                    <td className="border px-4 py-2 hidden md:table-cell">{plan.validity}</td>
+                    <td className="border px-4 py-2 hidden md:table-cell">{plan.data} MB</td>
+                    <td className="border px-4 py-2 hidden md:table-cell">{plan.type}</td>
                     <td className="border px-4 py-2">
                       <button
-                        className="bg-yellow-500 text-white py-1 px-3 rounded mr-2"
+                        className="bg-yellow-500 text-white py-1 px-3 rounded mr-2 mb-1"
                         onClick={() => handleEditPlans(plan)}
                       >
                         Edit

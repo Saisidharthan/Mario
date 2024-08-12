@@ -64,7 +64,7 @@ const Login = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-black via-gray-950 to-gray-900">
+            <div className="flex items-center justify-center md:min-h-screen bg-gradient-to-b from-black via-gray-950 to-gray-900">
                 <div className='relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0'>
                     <div className='flex flex-col justify-center p-8 md:p-14'>
                         <span className='mb-3 text-4xl font-bold'>Welcome Back</span>
@@ -94,20 +94,10 @@ const Login = () => {
                                 />
                                 {errors.password && <p className="text-red-500">{errors.password}</p>}
                             </div>
-                            <div className='flex justify-between w-full py-4'>
-                                <div className='mr-24'>
-                                    <input type='checkbox' name='ch' className='mr-2' />
-                                    <span className='text-md'>Remember for 30 days</span>
-                                </div>
-                                <span className='font-bold text-md'>Forgot password</span>
-                            </div>
                             <button type="submit" className='w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300'>
                                 Sign In
                             </button>
                         </form>
-                        <button className='w-full bg-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white flex'>
-                        <FcGoogle  className='w-[25px] h-[25px] ml-16 mr-8'/>Sign In with Google
-                        </button>
                         <div className='text-center text-gray-400'>
                               Dont Have an Account?
                               <a href="/register" className='font-bold text-black'> Sign up for Free</a>

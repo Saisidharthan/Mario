@@ -34,25 +34,26 @@ const ManageQueries = () => {
   }
 
   return (
-    <div className="min-h-[89vh] bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white ">
-      <div className="flex h-[89vh]">
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white ">
+      <div className="flex md:flex-row flex-col">
       <Sidebar />
-        <main className="w-3/4 p-6 h-[80.5vh]">
+        <main className="md:w-3/4 p-6 h-full">
           <h1 className="text-2xl font-bold mb-4 text-center">Manage Customer Queries</h1>
           <div className="overflow-auto h-[calc(100vh-200px)]">
             <table className="min-w-full bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
               <thead>
                 <tr>
-                  <th className="py-2 px-4">Name</th>
-                  <th className="py-2 px-4">Email</th>
+                  <th className="py-2 px-4 hidden md:table-cell">Name</th>
+                  <th className="py-2 px-4 hidden md:table-cell">Email</th>
                   <th className="py-2 px-4">Message</th>
+                  <th className="py-2 px-4">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {queries.map(query => (
                   <tr key={query.id}>
-                    <td className="border px-4 py-2">{query.name}</td>
-                    <td className="border px-4 py-2">{query.email}</td>
+                    <td className="border px-4 py-2 hidden md:table-cell">{query.name}</td>
+                    <td className="border px-4 py-2 hidden md:table-cell">{query.email}</td>
                     <td className="border px-4 py-2">{query.message}</td>
                     <td className="border px-4 py-2">
                       <button

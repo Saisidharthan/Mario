@@ -127,10 +127,10 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className="min-h-[89vh] bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
-      <div className="flex">
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
+      <div className="flex md:flex-row flex-col">
         <Sidebar />
-        <div className="container mx-auto p-4 w-3/4">
+        <div className="container mx-auto p-4 md:w-3/4">
           <div className='flex justify-between items-center mb-4'>
             <h1 className="text-2xl font-bold text-center flex-1">User Management</h1>
             <button
@@ -144,9 +144,9 @@ const ManageUsers = () => {
             <thead>
               <tr>
                 <th className="py-2">First Name</th>
-                <th className="py-2">Last Name</th>
-                <th className="py-2">Email</th>
-                <th className="py-2">Role</th>
+                <th className="py-2 hidden md:table-cell">Last Name</th>
+                <th className="py-2 hidden md:table-cell">Email</th>
+                <th className="py-2 hidden md:table-cell">Role</th>
                 <th className="py-2">Actions</th>
               </tr>
             </thead>
@@ -154,12 +154,12 @@ const ManageUsers = () => {
               {users.map(user => (
                 <tr key={user.email}>
                   <td className="border px-4 py-2">{user.firstName}</td>
-                  <td className="border px-4 py-2">{user.lastName}</td>
-                  <td className="border px-4 py-2">{user.email}</td>
-                  <td className="border px-4 py-2">{user.role}</td>
-                  <td className="border px-4 py-2 flex justify-center">
+                  <td className="border px-4 py-2 hidden md:table-cell">{user.lastName}</td>
+                  <td className="border px-4 py-2 hidden md:table-cell">{user.email}</td>
+                  <td className="border px-4 py-2 hidden md:table-cell">{user.role}</td>
+                  <td className="border px-4 py-2 justify-center flex-col md:flex-row items-center">
                     <button
-                      className="bg-yellow-500 text-white py-1 px-3 rounded mr-5 w-20 hover:bg-yellow-600"
+                      className="bg-yellow-500 text-white py-1 px-3 rounded mr-5 w-20 hover:bg-yellow-600 mb-2"
                       onClick={() => handleEditClick(user)}
                     >
                       Edit
@@ -187,7 +187,7 @@ const ManageUsers = () => {
       {isEditModalOpen && (
         <>
           <div className="fixed inset-0 bg-black bg-opacity-75 z-40" />
-          <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="fixed inset-0 flex items-center justify-center z-50 p-8">
             <div className="bg-white p-6 rounded-lg w-full max-w-md relative shadow-xl">
               <button
                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-4xl mr-3"
@@ -261,7 +261,7 @@ const ManageUsers = () => {
       {isAddModalOpen && (
         <>
           <div className="fixed inset-0 bg-black bg-opacity-75 z-40" />
-          <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="fixed inset-0 flex items-center justify-center z-50 p-8">
             <div className="bg-white p-6 rounded-lg w-full max-w-md relative shadow-xl">
               <button
                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-4xl mr-3"
@@ -347,7 +347,7 @@ const ManageUsers = () => {
       {isPasswordModalOpen && (
         <>
           <div className="fixed inset-0 bg-black bg-opacity-75 z-40" />
-          <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="fixed inset-0 flex items-center justify-center z-50 p-8">
             <div className="bg-white p-6 rounded-lg w-full max-w-md relative shadow-xl">
               <button
                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-4xl mr-3"

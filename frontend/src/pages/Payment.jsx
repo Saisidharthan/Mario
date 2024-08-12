@@ -41,7 +41,7 @@ const Payment = () => {
 
     return (
         <div>
-            <div className="bg-gradient-to-b from-black via-gray-950 to-gray-900 flex items-center justify-center p-6 h-[700px]">
+            <div className="bg-gradient-to-b from-black via-gray-950 to-gray-900 flex items-center justify-center p-10">
                 <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8">
                     <header className="text-center mb-4">
                         <h1 className="text-2xl font-semibold text-gray-800">Secure Payment</h1>

@@ -61,11 +61,11 @@ const AdminDashboard = () => {
 
     return (
         <div className="min-h-[90.25vh] bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white">
-            <div className="flex">
+            <div className="flex md:flex-row flex-col">
                 <Sidebar />
-                <main className="w-3/4 p-6">
+                <main className="md:w-3/4 p-6">
                     <h1 className="text-3xl font-semibold mb-6 text-center white">Admin Dashboard</h1>
-                    <div className="grid grid-cols-3 gap-6 text-center">
+                    <div className="grid md:grid-cols-3 gap-6 text-center p-2">
                         <div className="bg-gray-700 p-6 rounded-lg shadow-lg">
                             <h2 className="text-3xl font-semibold mb-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">Total Customers</h2>
                             <p className="text-5xl font-bold">{totalCustomers}</p>
@@ -79,39 +79,49 @@ const AdminDashboard = () => {
                             <p className="text-5xl font-bold">{totalComments}</p>
                         </div>
                     </div>
-                        <div className="w-full">
-                            <h2 className="text-3xl font-semibold my-10 text-center text-white">Plans by Sector</h2>
-                            <ResponsiveContainer width="100%" height={350}>
-                                <BarChart data={planData}>
-                                    <CartesianGrid strokeDasharray="3 3" stroke="#555555" />
-                                    <XAxis dataKey="sector" stroke="#ffffff" />
-                                    <YAxis stroke="#ffffff" />
-                                    <Tooltip contentStyle={{ backgroundColor: '#9BB0C1', border: 'none' }} />
-                                    <Legend />
-                                    <Bar dataKey="planCount" fill="#C738BD" barSize={40} />
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                        <div className="w-full my-10">
-                            <h2 className="text-3xl font-semibold text-center text-white">Plan Purchase Distribution</h2>
-                            <ResponsiveContainer width="100%" height={350} className="mt-10">
-                                <PieChart>
-                                    <Pie
-                                        data={pieData}
-                                        innerRadius={60}
-                                        outerRadius={125}
-                                        paddingAngle={8}
-                                        dataKey="value"
-                                        label
-                                    >
-                                        {pieData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                        ))}
-                                    </Pie>
-                                    <Tooltip />
-                                </PieChart>
-                            </ResponsiveContainer>
-                        </div>
+                    <div className="w-full md:px-8 lg:px-16 h-full">
+                        <h2 className="text-2xl md:text-3xl font-semibold my-6 md:my-10 text-center text-white">
+                            Plans by Sector
+                        </h2>
+                        <ResponsiveContainer width="100%" height={400}>
+                            <BarChart data={planData} margin={{ top: 20, right: 30, left: 20, bottom: 150 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#555555" />
+                            <XAxis 
+                                dataKey="sector" 
+                                stroke="#ffffff" 
+                                tick={{ fill: '#ffffff' }} 
+                                angle={-90} 
+                                dy={10} 
+                                dx={-10} // Adjust horizontal position
+                                textAnchor="end"
+                            />
+                            <YAxis stroke="#ffffff" />
+                            <Tooltip contentStyle={{ backgroundColor: '#006666', border: 'none' }} />
+                            <Bar dataKey="planCount" fill="#C738BD" barSize={30} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+
+                    <div className="w-full my-10 hidden md:block">
+                        <h2 className="text-3xl font-semibold text-center text-white">Plan Purchase Distribution</h2>
+                        <ResponsiveContainer width="100%" height={350} className="mt-10">
+                            <PieChart>
+                                <Pie
+                                    data={pieData}
+                                    innerRadius={60}
+                                    outerRadius={125}
+                                    paddingAngle={8}
+                                    dataKey="value"
+                                    label
+                                >
+                                    {pieData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                    ))}
+                                </Pie>
+                                <Tooltip />
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </div>
                 </main>
             </div>
         </div>
