@@ -1,7 +1,10 @@
 package com.mobilerecharge.recharge.service;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.mobilerecharge.recharge.enums.PlanEnum;
 import com.mobilerecharge.recharge.model.PlansModel;
 import com.mobilerecharge.recharge.repository.PlansRepository;
 
@@ -42,5 +45,10 @@ public class PlansServices
         existingPlan.setValidity(plan.getValidity());
         existingPlan.setType(plan.getType());
         return repository.save(existingPlan);
+    }    
+    public Map<PlanEnum, Long> getPlansCountByType() {
+            List<PlansModel> plans = repository.findAll();
+            return plans.stream()
+                    .collect(Collectors.groupingBy(PlansModel::getType, Collectors.counting()));
+        }
     }
-}

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mobilerecharge.recharge.model.PurchaseModel;
 import com.mobilerecharge.recharge.service.PurchaseService;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.mobilerecharge.recharge.enums.PlanEnum;
+
 
 @RestController
 public class PurchaseController {
@@ -25,5 +28,9 @@ public class PurchaseController {
     @GetMapping("/purchase/{user_id}")
     public List<PurchaseModel> getPurchaseHistory(@PathVariable int user_id) {
         return service.getPurchaseHistory(user_id);
+    }
+    @GetMapping("/purchase/planCount/{planName}")
+    public int getUserCount(@PathVariable PlanEnum planName) {
+        return service.getUsercountForPlans(planName);
     }
 }

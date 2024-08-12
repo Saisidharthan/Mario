@@ -1,16 +1,15 @@
 package com.mobilerecharge.recharge.controller;
 
 import java.util.List;
-
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import com.mobilerecharge.recharge.enums.PlanEnum;
 import com.mobilerecharge.recharge.model.PlansModel;
 import com.mobilerecharge.recharge.service.PlansServices;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -57,5 +56,10 @@ public class PlanController {
     {
         PlansModel updatedPlan = service.updatePlan(plan);
         return ResponseEntity.ok(updatedPlan);
+    }
+
+    @GetMapping("/plans/countByType")
+    public Map<PlanEnum, Long> getPlansCountByType() {
+        return service.getPlansCountByType();
     }
 }

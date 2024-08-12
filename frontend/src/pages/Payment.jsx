@@ -20,6 +20,7 @@ const Payment = () => {
             "planName": plan.name,
             "planAmount": plan.amount,
             "planValidity": plan.validity,
+            "type": plan.type,
             "userId": user.id
         }
         

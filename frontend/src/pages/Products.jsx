@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import img from '../assets/img-1.jpg';
@@ -12,6 +11,7 @@ const Products = () => {
     const [loading, setLoading] = useState(true);
     const [selectedPlan, setSelectedPlan] = useState(null);
     const { axiosInstance } = useContext(UserContext);
+    const [sortOrder, setSortOrder] = useState('asc'); 
 
     useEffect(() => {
         const fetchPlans = async () => {
@@ -38,7 +38,20 @@ const Products = () => {
         setSelectedPlanType(type);
     };
 
-    const filteredPlans = selectedPlanType ? plans.filter(plan => plan.type === selectedPlanType) : plans;
+    const handleSortChange = (e) => {
+        setSortOrder(e.target.value);
+    };
+
+    // Filter and sort plans
+    const filteredPlans = selectedPlanType 
+        ? plans.filter(plan => plan.type === selectedPlanType) 
+        : plans;
+
+    const sortedPlans = filteredPlans.sort((a, b) => {
+        return sortOrder === 'asc' 
+            ? a.amount - b.amount 
+            : b.amount - a.amount;
+    });
 
     if (loading) {
         return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
@@ -93,8 +106,18 @@ const Products = () => {
                                 </button>
                             </div>
                         </div>
+                        <div className="flex justify-end mb-4 mr-24 mt-3">
+                            <label className="text-pink-600 text-lg mr-2 opacity-90">Sort by Price: </label>
+                            <select 
+                                value={sortOrder} 
+                                onChange={handleSortChange} 
+                                className="text-white text-lg px-2 py-1 rounded-md bg-transparent opacity-90">
+                                <option value="asc" className="bg-black text-purple-500">Min to Max</option>
+                                <option value="desc" className="bg-black text-purple-500">Max to Min</option>
+                            </select>
+                        </div>
                         <div className="mt-9 w-[85%] mx-auto">
-                            <div className="relative h-[500px] overflow-auto">
+                            <div className="relative h-[480px] overflow-auto">
                                 <table className="min-w-full bg-white shadow-md">
                                     <thead className="bg-gray-950 text-white sticky top-0">
                                         <tr>
@@ -106,12 +129,12 @@ const Products = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="overflow-y-auto h-[400px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
-                                        {filteredPlans.map(plan => (
+                                        {sortedPlans.map(plan => (
                                             <tr key={plan.id} className="bg-gray-100 even:bg-gray-200 text-xl">
                                                 <td className="py-2 px-4">{plan.name}</td>
                                                 <td className="py-2 px-4"><span>&#x20B9;</span>{plan.amount}</td>
                                                 <td className="py-2 px-4">{plan.validity}</td>
-                                                <td className="py-2 px-4">{plan.data} GB{plan.type==='UNLIMITED'?" / Day":null}</td>
+                                                <td className="py-2 px-4">{plan.data} GB{plan.type === 'UNLIMITED' ? " / Day" : null}</td>
                                                 <td className="py-0 px-4 items-center">
                                                     <div className="bg-black text-white font-semibold text-xl w-20 text-center border rounded-lg mt-5 cursor-pointer" onClick={() => handleRowClick(plan)}>
                                                         &#8377;{plan.amount}
@@ -141,7 +164,7 @@ const Products = () => {
                             <p className="text-lg flex flex-col"><span className="font-bold text-xl">Validity</span> {selectedPlan.validity}</p>
                         </div>
                             
-                        <p className="text-lg flex flex-col ml-3 mt-3"><span className="font-bold text-xl">Data</span> {selectedPlan.data} GB{selectedPlan.type==='UNLIMITED'?" / Day":null}</p>
+                        <p className="text-lg flex flex-col ml-3 mt-3"><span className="font-bold text-xl">Data</span> {selectedPlan.data} GB{selectedPlan.type === 'UNLIMITED' ? " / Day" : null}</p>
                         <button 
                             onClick={() => setSelectedPlan(null)} 
                             className="mt-4 bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-700 transition duration-300 w-full"

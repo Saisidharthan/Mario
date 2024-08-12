@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mobilerecharge.recharge.model.PurchaseModel;
 import com.mobilerecharge.recharge.repository.PurchaseRepository;
+import com.mobilerecharge.recharge.enums.PlanEnum;
 
 @Service
 public class PurchaseService {
@@ -19,5 +20,8 @@ public class PurchaseService {
 
     public List<PurchaseModel> getPurchaseHistory(int user_id) {
         return repo.findByuserId(user_id);
+    }
+    public int getUsercountForPlans(PlanEnum planName) {
+        return repo.findByPlanName(planName);
     }
 }

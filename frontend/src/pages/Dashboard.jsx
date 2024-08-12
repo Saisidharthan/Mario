@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import heroImage from '../assets/image-2.jpg';
 import { UserContext } from '../context/UserContext';
 
@@ -73,15 +72,15 @@ const Dashboard = () => {
       <div className="py-12 bg-gradient-to-b from-black via-gray-950 to-gray-900">
         <h2 className="text-5xl font-semibold text-white text-center mb-8">Our Best Served Plans</h2>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-gradient-to-r from-sky-500 to-indigo-500 p-6 rounded-lg shadow-lg">
+          <div className="bg-gradient-to-r from-blue-300 to-blue-500 p-6 rounded-lg shadow-lg">
             <h3 className="text-2xl font-semibold mb-4 text-white">Truly Unlimited</h3>
             <p>Get your unlimited access for your mobile calls and messages as much as your plan expires.</p>
           </div>
-          <div className="bg-gradient-to-r from-sky-500 to-indigo-500 p-6 rounded-lg shadow-lg">
+          <div className="bg-gradient-to-r from-blue-300 to-blue-500  p-6 rounded-lg shadow-lg">
             <h3 className="text-2xl font-semibold mb-4 text-white">Cricket Plans</h3>
             <p>Get the best sporting offers as India plays the world cup to win. Cheer them up, guys!</p>
           </div>
-          <div className="bg-gradient-to-r from-sky-500 to-indigo-500 p-6 rounded-lg shadow-lg">
+          <div className="bg-gradient-to-r from-blue-300 to-blue-500  p-6 rounded-lg shadow-lg">
             <h3 className="text-2xl font-semibold mb-4 text-white">International Roaming</h3>
             <p>Connect with your faraway friends and revive your friendship with the lowest international roaming offers.</p>
           </div>
